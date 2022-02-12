@@ -1,3 +1,4 @@
+import sys
 import time
 import requests
 from plyer import notification
@@ -50,7 +51,7 @@ def main(location_id):
 
 
 if __name__ == '__main__':
-    # JFK 5140
-    # LAX 2720
+    # JFK 5140, LAX 2720, default to JFK
     # see airports.json for other locations
-    main(5140)
+    default = 5140 if len(sys.argv) == 1 else sys.argv[1]
+    main(default)

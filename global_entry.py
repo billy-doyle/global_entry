@@ -1,11 +1,8 @@
 import time
-import subprocess
 import requests
+from plyer import notification
 
 def fetch(location_id):
-
-    # 5444 is good to test
-    # JFK IS 5140
 
     agent = (
         "Mozilla/5.0 (X11; Linux x86_64) "
@@ -46,7 +43,7 @@ def main(location_id):
             message = 'Global Entry Appt @ ' + resp[0]['startTimestamp']
             if message not in set_:
                 print(message)
-                subprocess.Popen(['notify-send', message])
+                notification.notify(title='global_entry.py', message=message, timeout=3)
                 set_.add(message)
 
             time.sleep(5)

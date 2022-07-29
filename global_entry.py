@@ -1,4 +1,5 @@
 import sys
+import os
 import time
 import requests
 from plyer import notification
@@ -44,7 +45,10 @@ def main(location_id):
             message = 'Global Entry Appt @ ' + resp[0]['startTimestamp']
             if message not in set_:
                 print(message)
-                notification.notify(title='global_entry.py', message=message, timeout=3)
+                try:
+                    notification.notify(title='global_entry.py', message=message, timeout=3)
+                except:
+                    os.system("osascript -e 'display notification \"{}\"\'".format(message))
                 set_.add(message)
 
             time.sleep(5)

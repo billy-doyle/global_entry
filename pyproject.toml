@@ -1,0 +1,23 @@
+[project]
+name = "global-entry"
+version = "0.1.0"
+description = "Find Global Entry appts"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "plyer>2",
+    "pyobjus>=1.2.3",
+    "requests<3",
+]
+
+[tool.ruff]
+line-length = 96
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = []
+
+[tool.uv]
+dev-dependencies = [
+    "pre-commit>=3.8.0",
+]

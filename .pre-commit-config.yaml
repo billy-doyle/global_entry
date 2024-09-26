@@ -1,0 +1,37 @@
+# This file defines the pre-commit hooks to run.
+#
+# Ref
+#   * install pre-commit to your machine https://pre-commit.com/#install
+#   * install the hooks for the repository `$ pre-commit install`
+#
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 'v4.5.0'
+    hooks:
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        exclude: tennis_data_sci/core/aggregations/avg_id/tennis_avg_ids.ipynb
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.4.8
+    hooks: # Update the uv lockfile
+      - id: uv-lock
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    # Ruff version.
+    rev: 'v0.6.4'
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
